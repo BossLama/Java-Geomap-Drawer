@@ -31,6 +31,7 @@ public class RGPSMap {
         this.height = height;
         this.scale = 1;
         this.streets = new ArrayList<>();
+        this.route = new Route();
         NavigationColors.setWidth(x, y, width);
     }
 
@@ -98,13 +99,19 @@ public class RGPSMap {
             //SETZE STRASSENFARBE
             g2d.setStroke(new BasicStroke(2));
             if(street.getType().equalsIgnoreCase("residential")){
-                g2d.setStroke(new BasicStroke(3));
+                g2d.setStroke(new BasicStroke(2));
             }
             if(street.getType().equalsIgnoreCase("secondary")){
                 g2d.setStroke(new BasicStroke(5));
             }
             if(street.getType().equalsIgnoreCase("tertiary")){
                 g2d.setStroke(new BasicStroke(4));
+            }
+            if(street.getType().equalsIgnoreCase("primary")){
+                g2d.setStroke(new BasicStroke(5));
+            }
+            if(street.getType().equalsIgnoreCase("motorway")){
+                g2d.setStroke(new BasicStroke(6));
             }
 
             g2d.setPaint(street.getColor());
