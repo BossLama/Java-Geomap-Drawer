@@ -10,13 +10,13 @@ import java.awt.*;
 
 public class Main {
 
-    private static RGPSMap rgpsMap = new RGPSMap(0,0, 1000, 800);
+    private static RGPSMap rgpsMap = new RGPSMap(0,0, 800, 480);
     private static StreetMapLoader loader;
 
     public static void main(String[] args){
         JFrame frame = new JFrame();
         frame.setLocationRelativeTo(null);
-        frame.setSize(1000, 800);
+        frame.setSize(800, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         initMap();
@@ -43,6 +43,7 @@ public class Main {
         rgpsMap.setStreets(streetMapLoader.getStreets());
         rgpsMap.updateCurrentPosition(48.302954,11.355365);
         rgpsMap.setScale(7);
+
     }
 
     private static JPanel drawPanel(){
@@ -50,7 +51,7 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 g.setColor(Color.BLACK);
-                //g.fillRect(0,0,800,480);
+                g.fillRect(0,0,800,480);
                 rgpsMap.draw((Graphics2D) g);
                 //repaint();
             }

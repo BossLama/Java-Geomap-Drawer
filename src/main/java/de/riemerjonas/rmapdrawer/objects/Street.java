@@ -51,23 +51,23 @@ public class Street {
         return waypoints;
     }
 
-    public Color getColor(){
+    public GradientPaint getColor(){
         switch (type){
             case "motorway":
-                return NavigationColors.color_street_motorway = new Color(184, 73, 48);
+                return NavigationColors.color_street_motorway;
             case "trunk":
-                return NavigationColors.color_street_trunk = new Color(184, 111, 48);
+                return NavigationColors.color_street_trunk;
             case "primary":
-                return NavigationColors.color_street_primary = new Color(184, 168, 48);
+                return NavigationColors.color_street_primary;
             case "secondary":
-                return NavigationColors.color_street_secondary = new Color(140, 140, 140);
+                return NavigationColors.color_street_secondary;
             case "tertiary":
-                return NavigationColors.color_street_tertiary = new Color(107, 107, 107);
+                return NavigationColors.color_street_tertiary;
             case "unclassified":
-                return NavigationColors.color_street_unclassified = new Color(61, 61, 61);
+                return NavigationColors.color_street_unclassified;
             case "residential":
-                return NavigationColors.color_street_residential = new Color(82, 82, 82);
-            default: return NavigationColors.color_street_default = new Color(48, 98, 184);
+                return NavigationColors.color_street_residential;
+            default: return NavigationColors.color_street_default;
         }
     }
 

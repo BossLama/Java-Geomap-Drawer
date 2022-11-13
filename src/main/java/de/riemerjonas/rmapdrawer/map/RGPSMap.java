@@ -1,5 +1,6 @@
 package de.riemerjonas.rmapdrawer.map;
 
+import de.riemerjonas.rmapdrawer.data.NavigationColors;
 import de.riemerjonas.rmapdrawer.objects.Route;
 import de.riemerjonas.rmapdrawer.objects.Street;
 import de.riemerjonas.rmapdrawer.objects.Waypoint;
@@ -14,8 +15,8 @@ public class RGPSMap {
         Scale -> scale * 100px = 1km on map
      */
 
-    private int x, y, width, height, scale;
-    private double lat_current, lon_current;
+    private int x, y, width, height;
+    private double lat_current, lon_current, scale;
     private Route route;
 
     private Color path_color = new Color(252, 182, 3);
@@ -30,15 +31,16 @@ public class RGPSMap {
         this.height = height;
         this.scale = 1;
         this.streets = new ArrayList<>();
+        NavigationColors.setWidth(x, y, width);
     }
 
     //SETTING SCALE-FACTOR
-    public void setScale(int scale){
+    public void setScale(double scale){
         this.scale =scale;
     }
 
     //GET SCALE FACTOR
-    public int getScale(){
+    public double getScale(){
         return scale;
     }
 
@@ -108,7 +110,7 @@ public class RGPSMap {
                 g2d.setStroke(new BasicStroke(4));
             }
 
-            g2d.setColor(street.getColor());
+            g2d.setPaint(street.getColor());
 
             //BERECHNE ANDERE WEGPUNKTE UND ZEICHNE LINIE
             for(int i = 1; i < street.getWaypoints().size(); i++){
