@@ -41,8 +41,8 @@ public class Main {
 
         rgpsMap.setCurrentRoute(route);
         rgpsMap.setStreets(streetMapLoader.getStreets());
-        rgpsMap.updateCurrentPosition(48.302954,11.355365);
-        rgpsMap.setScale(7);
+        rgpsMap.updateCurrentPosition(48.301875,11.351336);
+        rgpsMap.setScale(1.8);
 
     }
 

@@ -21,9 +21,9 @@ public class NavigationColors {
         color_street_primary = new GradientPaint(x + (width / 2),y, new Color(245, 135, 66), x + width - 30, y, new Color(255,255,255,0));
         color_street_secondary = new GradientPaint(x + (width / 2),y, new Color(245, 209, 66), x + width - 30, y, new Color(255,255,255,0));
         color_street_tertiary = new GradientPaint(x + (width / 2),y, new Color(230, 245, 66), x + width - 30, y, new Color(255,255,255,0));
-        color_street_unclassified = new GradientPaint(x + (width / 2),y, new Color(255,255,255), x + width - 30, y, new Color(255,255,255,0));
-        color_street_residential = new GradientPaint(x + (width / 2),y, new Color(255,255,255), x + width - 30, y, new Color(255,255,255,0));
-        color_street_default = new GradientPaint(x + (width / 2),y, new Color(255,255,255), x + width - 30, y, new Color(255,255,255,0));
-        color_route = new GradientPaint(x + (width / 2),y, new Color(255,255,255), x + width - 30, y, new Color(255,255,255,0));
+        color_street_unclassified = new GradientPaint(x + (width / 2),y, new Color(82, 82, 82), x + width - 30, y, new Color(255,255,255,0));
+        color_street_residential = new GradientPaint(x + (width / 2),y, new Color(82, 82, 82), x + width - 30, y, new Color(255,255,255,0));
+        color_street_default = new GradientPaint(x + (width / 2),y, new Color(82, 82, 82), x + width - 30, y, new Color(255,255,255,0));
+        color_route = new GradientPaint(x + (width / 2),y, new Color(71, 99, 255), x + width - 30, y, new Color(255,255,255,0));
     }
 }

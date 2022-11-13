@@ -79,9 +79,6 @@ public class RGPSMap {
         int last_waypoint_x = -1;
         int last_waypoint_y = -1;
 
-        g2d.setColor(Color.RED);
-        g2d.fillOval(middle_x, middle_y, 10, 10);
-
         for(Street street : streets){
             //BERECHNE DEN ERSTEN WEGPUNKT
             Waypoint first = street.getWaypoints().get(0);
@@ -112,25 +109,60 @@ public class RGPSMap {
 
             g2d.setPaint(street.getColor());
 
-            //BERECHNE ANDERE WEGPUNKTE UND ZEICHNE LINIE
-            for(int i = 1; i < street.getWaypoints().size(); i++){
-                Waypoint waypoint = street.getWaypoints().get(i);
-                distance_x = - waypoint.getDistanceNorthSouth(lat_current, lon_current);
-                distance_y = waypoint.getDistanceEastOst(lat_current, lon_current);
+            //ÜBERPRÜFE ZOOM
+            if(scale <= 1.7 && street.getType().equalsIgnoreCase("residential")){
 
-                distance_x_px = (int) (distance_x * 100 * scale);
-                distance_y_px = (int) (distance_y * 100 * scale);
+            }else{
+                //BERECHNE ANDERE WEGPUNKTE UND ZEICHNE LINIE
+                for(int i = 1; i < street.getWaypoints().size(); i++){
+                    Waypoint waypoint = street.getWaypoints().get(i);
+                    distance_x = - waypoint.getDistanceNorthSouth(lat_current, lon_current);
+                    distance_y = waypoint.getDistanceEastOst(lat_current, lon_current);
 
-                waypoint_x = middle_x + distance_x_px;
-                waypoint_y = middle_y + distance_y_px;
+                    distance_x_px = (int) (distance_x * 100 * scale);
+                    distance_y_px = (int) (distance_y * 100 * scale);
 
-                g2d.drawLine(last_waypoint_x, last_waypoint_y, waypoint_x, waypoint_y);
+                    waypoint_x = middle_x + distance_x_px;
+                    waypoint_y = middle_y + distance_y_px;
 
-                //SETZTE DEN LETZTEN WEGPUNKT AUF DIESEN
-                last_waypoint_x = waypoint_x;
-                last_waypoint_y =waypoint_y;
+                    g2d.drawLine(last_waypoint_x, last_waypoint_y, waypoint_x, waypoint_y);
+
+                    //SETZTE DEN LETZTEN WEGPUNKT AUF DIESEN
+                    last_waypoint_x = waypoint_x;
+                    last_waypoint_y =waypoint_y;
+                }
             }
         }
+        drawRoute(g2d);
+    }
 
+    public void drawRoute(Graphics2D g2d){
+        int middle_x = x + width / 2;
+        int middle_y = y + height / 2;
+
+        int last_waypoint_x = middle_x;
+        int last_waypoint_y = middle_y;
+
+        for(Waypoint waypoint : route.getWaypoints()){
+            double distance_x = - waypoint.getDistanceNorthSouth(lat_current, lon_current);
+            double distance_y = waypoint.getDistanceEastOst(lat_current, lon_current);
+
+            int distance_x_px = (int) (distance_x * 100 * scale);
+            int distance_y_px = (int) (distance_y * 100 * scale);
+
+            int waypoint_x = middle_x + distance_x_px;
+            int waypoint_y = middle_y + distance_y_px;
+
+            g2d.setPaint(NavigationColors.color_route);
+            g2d.setStroke(new BasicStroke(4));
+            g2d.drawLine(last_waypoint_x, last_waypoint_y, waypoint_x, waypoint_y);
+
+            //SETZTE DEN LETZTEN WEGPUNKT AUF DIESEN
+            last_waypoint_x = waypoint_x;
+            last_waypoint_y =waypoint_y;
+        }
+
+        g2d.setPaint(NavigationColors.color_route);
+        g2d.fillOval(middle_x - 5, middle_y - 5, 10, 10);
     }
 }
